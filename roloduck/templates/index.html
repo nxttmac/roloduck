@@ -1,0 +1,18 @@
+<head>
+    <title>Demo</title>
+</head>
+<body>
+    <img src="/static/images/duck.jpg"><h1>Hello</h1>
+    <form action="/" method="POST">
+       <input type="text" name="username" id="username" placeholder="Name">
+       <input type="text" name="useremail" id="useremail" placeholder="Email Address">
+       <input type="submit" value="Sign-up Today">
+    </form>
+    <a href="/deleteUsers">Delete all users</a>
+
+    {% for user in userlist %}
+        <p>'{{user.name}}' has email {{user.email}}</p>
+    {% endfor %}
+</body>
+
+</html>
