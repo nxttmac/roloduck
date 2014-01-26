@@ -3,6 +3,7 @@
 /* Navbar */
 .navbar {
   height:52px;
+  outline: none;
 }
 
 .navbar-brand {
@@ -31,6 +32,7 @@ nav .form-group, nav .checkbox, .signin-button {
 #slider {
   margin-top: 20px;
   text-align: center;
+  width:396;
 }
 
 #slider-nav {
@@ -39,11 +41,10 @@ nav .form-group, nav .checkbox, .signin-button {
 
 #slider-nav li {
   display: inline;
-  cursor: pointer;
 }
 
-#slider-nav li.active {
-  cursor: auto;
+#slider-nav li a {
+  cursor: pointer;
 }
 
 .subheadline {
@@ -52,9 +53,10 @@ nav .form-group, nav .checkbox, .signin-button {
   font-weight: normal
 }
 
-.short-pitch {
+p.short-pitch {
   margin: 30px 0;
   font-size: 20px;
+  line-height: 1.6
 }
 
 /* Footer */
