@@ -1,29 +1,29 @@
 <head>
     <title>RoloDuck</title>
-    <!-- Less --!>
-    <script type="text/javascript" src="/static/css/less.js"></script>
-    <!-- jQuery --!>
-    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery-ui-1.10.4.custom.min.js"></script>
-    <!-- Bootstrap --!>
-    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
-    <!-- Bootstrap Styles --!>
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    {% include 'header-imports.html' %}
 </head>
 <body>
+{% include 'navbar.html' %}
 <div class="container">
-    <img src="/static/img/duck.jpg"><h1>Hello</h1>
-    <form action="/" method="POST">
-       <input type="text" name="username" id="username" placeholder="Name">
-       <input type="text" name="useremail" id="useremail" placeholder="Email Address">
-       <input type="submit" value="Sign-up Today" class="btn btn-info btn-lg">
-    </form>
-    <a href="/deleteUsers">Delete all users</a>
+    <div class="panel-body">
+        <div class="jumbotron">
+            <h1>Stop wasting your time!</h1>
+            <div>
+                <button type="button" class="btn btn-primary btn-lg">Learn More</button>
+                <button type="button" class="btn btn-success btn-lg">Get Started</button>
+            </div>
+            <a href="/deleteUsers">Delete all users</a>
 
-    {% for user in userlist %}
-        <p>'{{user.name}}' has email {{user.email}}</p>
-    {% endfor %}
+            {% for user in userlist %}
+                <p>'{{user.name}}' has email {{user.email}}</p>
+            {% endfor %}
+        </div>
+    </div>
 </div>    
 </body>
+<footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2014 RoloDuck, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
 
 </html>
