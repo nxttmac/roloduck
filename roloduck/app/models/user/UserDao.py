@@ -1,5 +1,3 @@
-import string
-
 class UserDao(object):
 
     def __init__(self, database):
