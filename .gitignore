@@ -48,3 +48,11 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# IntelliJ Project Files #
+*.iml
+.idea
+/target/
+
+# Eclipse project files #
+.settings
