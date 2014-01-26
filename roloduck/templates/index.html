@@ -5,6 +5,7 @@
 <body>
 {% include 'common/navbar.html' %}
 <div class="container">
+<<<<<<< HEAD
   <div class="jumbotron">
     <h1 class="headline">Stop wasting your time!</h1>
     <div id="slider" class="pull-right">
@@ -23,6 +24,20 @@
     <div>
       <button type="button" class="btn btn-primary btn-lg">Learn More</button>
       <button type="button" class="btn btn-success btn-lg">Get Started</button>
+=======
+    <div class="panel-body">
+        <div class="jumbotron">
+            <h1>Stop wasting your time!</h1>
+            <div>
+                <button type="button" class="btn btn-primary btn-lg">Learn More</button>
+                <button type="button" class="btn btn-success btn-lg">Get Started</button>
+            </div>
+
+            {% for user in userlist %}
+                <p>{{user.firstname}} {{user.lastname}} has email {{user.useremail}}</p>
+            {% endfor %}
+        </div>
+>>>>>>> 20384527aaf658078c264d763e4e1304ad4133b9
     </div>
     <a href="/deleteUsers">Delete all users</a>
 
