@@ -6,6 +6,15 @@ ROLE_ADMIN = 1
 
 class User():
 
+    id = ''
+    firstName = ''
+    lastName = ''
+    email = ''
+    password = ''
+    clientId = ''
+    role = ROLE_USER
+    createdProjects = []
+
     def is_authenticated(self):
         return True
 
