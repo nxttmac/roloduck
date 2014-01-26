@@ -12,10 +12,9 @@
                 <button type="button" class="btn btn-primary btn-lg">Learn More</button>
                 <button type="button" class="btn btn-success btn-lg">Get Started</button>
             </div>
-            <a href="/deleteUsers">Delete all users</a>
 
             {% for user in userlist %}
-                <p>'{{user.name}}' has email {{user.email}}</p>
+                <p>{{user.firstname}} {{user.lastname}} has email {{user.useremail}}</p>
             {% endfor %}
         </div>
     </div>

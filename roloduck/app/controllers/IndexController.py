@@ -1,9 +1,11 @@
 __author__ = 'pjo336'
 
-from flask import render_template, request, redirect
 # Import our database connection and application
+from flask import render_template, request, redirect
+
 from app import app, db
-from app.models.user import UserDao
+from app.models.user import UserDao, User
+from flask.ext.login import login_required
 
 
 # Create our UserDao to connect to the user collection
@@ -16,14 +18,15 @@ def roloduck_index():
     userlist = user_dao.find_users()
     return render_template('index.html', userlist=userlist)
 
+# For now this is attached to posting the form in the navbar, but its a basic
+# mechanism to insert a user based off a form
 @app.route("/", methods=['POST'])
 def insert_new_user():
-    username = request.form.get("username")
+    # TODO Take out this hard coding when names are added into the forms
+    fname = 'herp'
+    lname = 'derp'
     useremail = request.form.get("useremail")
-    user_dao.insert_user(username, useremail)
+    new_user = {'firstname': fname, 'lastname': lname, 'useremail': useremail}
+    user_dao.insert_user(new_user)
     return redirect("/")
 
-@app.route("/deleteUsers")
-def delete_all_users():
-    user_dao.delete_all_users()
-    return redirect("/")
