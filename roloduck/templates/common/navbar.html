@@ -1,12 +1,25 @@
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="navbar-header navbar-left">
-        <a class="navbar-brand" href="/" style="float: left;">RoloDuck</a>
-        <img src="/static/img/duck.jpg" style="max-height: 50px; max-width: 50px; float: right;"/>
+<nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="navbar-header navbar-left">
+        <a class="navbar-brand" alt="Home" href="/"></a>
+      </div>
+      <form class="form-inline navbar-right navbar-form" action="/" method="POST" role="form">
+        <div class="form-group" >
+          <label class="sr-only" for="exampleInputEmail2">Email address</label>
+          <input type="email" class="form-control" name="useremail" id="useremail" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">Password</label>
+          <input type="password" class="form-control" name="userpassword" id="userpassword" placeholder="Password">
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"><span style="color:#fff;"> Remember me</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary signin-button">Sign in</button>
+      </form>
     </div>
-    <navbar-form class="navbar-right" action="/" method="POST">
-        <input type="text" name="useremail" id="useremail" placeholder="Email Address">
-        <input type="text" name="userpassword" id="userpassword" placeholder="Password">
-        <input type="checkbox" value="Remember me">
-        <input type="submit" value="Sign in" class="btn btn-success navbar-btn">
-    </navbar-form>
+  </div>
 </nav>
