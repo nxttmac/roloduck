@@ -1,0 +1,57 @@
+<head>
+    <title>RoloDuck</title>
+    {% include 'common/header-imports.html' %}
+</head>
+<body>
+    {% include 'common/navbar.html' %}
+    <div class="container">
+        {% block content %}
+        {% if logged_in %}
+            <div class="jumbotron">
+                <h2 class="headline">You're already a user you silly goose!</h2>
+                <div id="slider" class="pull-right">
+                  <img class="slider" src="/static/img/Roloduck_Product-screenshot_1.png" />
+                  <ul id="slider-nav">
+                    <li id="slider-1"><img src="/static/img/slider-dot-active.png" /></li>
+                    <li id="slider-2"><a onclick="slider_change(2)"><img src="/static/img/slider-dot.png" /></a></li>
+                    <li id="slider-3"><a onclick="slider_change(3)"><img src="/static/img/slider-dot.png" /></a></li>
+                  </ul>
+                </div>
+                <h3 class="subheadline">Contact lists get messy</h3>
+                <p class="short-pitch">
+                  RoloDuck make it easy to manage and share contacts across teams.<br />
+                  Keep all your information in one place and control who sees what.
+                </p>
+                <div>
+                  <button type="button" class="btn btn-primary btn-lg">Learn More</button>
+                  <button type="button" class="btn btn-success btn-lg">Get Started</button>
+                </div>
+            </div>
+        {% endif %}
+        {% if not logged_in %}
+            <form action="/login" method="POST" role="form">
+                <div class="form-group" >
+                    <label class="sr-only" for="exampleInputName2">Full name</label>
+                    <input type="email" class="form-control" name="username" id="username" placeholder="Enter full name">
+                </div>
+                <div class="form-group" >
+                    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                    <input type="email" class="form-control" name="useremail" id="useremail" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                    <input type="password" class="form-control" name="userpassword" id="userpassword" placeholder="Password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox"><span style="color:#fff;"> Remember me</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary signin-button">Sign in</button>
+            </form>
+        {% endif %}
+        {% endblock %}
+    </div>
+    {% include 'common/footer.html' %}
+</body>
+</html>

@@ -4,22 +4,31 @@
       <div class="navbar-header navbar-left">
         <a class="navbar-brand" alt="Home" href="/"></a>
       </div>
-      <form class="form-inline navbar-right navbar-form" action="/" method="POST" role="form">
-        <div class="form-group" >
-          <label class="sr-only" for="exampleInputEmail2">Email address</label>
-          <input type="email" class="form-control" name="useremail" id="useremail" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label class="sr-only" for="exampleInputPassword2">Password</label>
-          <input type="password" class="form-control" name="userpassword" id="userpassword" placeholder="Password">
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox"><span style="color:#fff;"> Remember me</span>
-          </label>
-        </div>
-        <button type="submit" class="btn btn-primary signin-button">Sign in</button>
-      </form>
+      {% block content %}
+      {% if logged_in %}
+        <form class="form-inline navbar-right navbar-form" action="/logout" method="GET" role="form">
+            <button type="submit" class="btn btn-info signin-button">Log out</button>
+        </form>
+      {% endif %}
+      {% if not logged_in %}
+        <form class="form-inline navbar-right navbar-form" action="/login" method="POST" role="form">
+          <div class="form-group" >
+            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+            <input type="email" class="form-control" name="useremail" id="useremail" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword2">Password</label>
+            <input type="password" class="form-control" name="userpassword" id="userpassword" placeholder="Password">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"><span style="color:#fff;"> Remember me</span>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary signin-button">Sign in</button>
+        </form>
+      {% endif %}
+      {% endblock %}
     </div>
   </div>
 </nav>

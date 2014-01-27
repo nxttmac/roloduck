@@ -6,7 +6,7 @@
 {% include 'common/navbar.html' %}
 <div class="container">
   <div class="jumbotron">
-    <h1 class="headline">Stop wasting your time!</h1>
+    <h1 class="headline">Welcome back, {{user.name}}</h1>
     <div id="slider" class="pull-right">
       <img class="slider" src="/static/img/Roloduck_Product-screenshot_1.png" />
       <ul id="slider-nav">
@@ -15,7 +15,7 @@
         <li id="slider-3"><a onclick="slider_change(3)"><img src="/static/img/slider-dot.png" /></a></li>
       </ul>
     </div>
-    <h3 class="subheadline">Contact lists get messy</h3>
+    <h3 class="subheadline">Start managing your projects!</h3>
     <p class="short-pitch">
       RoloDuck make it easy to manage and share contacts across teams.<br />
       Keep all your information in one place and control who sees what.
@@ -24,6 +24,10 @@
       <button type="button" class="btn btn-primary btn-lg">Learn More</button>
       <button type="button" class="btn btn-success btn-lg">Get Started</button>
     </div>
+
+    {% for user in userlist %}
+    <p>{{user.name}} has email {{user.email}}</p>
+    {% endfor %}
   </div>
   {% include 'common/footer.html' %}
 </div>    
