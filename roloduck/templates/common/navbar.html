@@ -5,12 +5,12 @@
         <a class="navbar-brand" alt="Home" href="/"></a>
       </div>
       {% block content %}
-      {% if logged_in %}
+      {% if session.username %}
         <form class="form-inline navbar-right navbar-form" action="/logout" method="GET" role="form">
             <button type="submit" class="btn btn-info signin-button">Log out</button>
         </form>
       {% endif %}
-      {% if not logged_in %}
+      {% if not session.username %}
         <form class="form-inline navbar-right navbar-form" action="/login" method="POST" role="form">
           <div class="form-group" >
             <label class="sr-only" for="exampleInputEmail2">Email address</label>

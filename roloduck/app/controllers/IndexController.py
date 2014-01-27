@@ -16,30 +16,24 @@ user_dao = UserDao.UserDao(db)
 @app.route("/index.html", methods=['GET'])
 @app.route("/", methods=['GET'])
 def roloduck_index():
-    if session['username'] is not None:
-        logged_in = True
     userlist = user_dao.find_users()
-    return render_template('index.html', userlist=userlist, logged_in=logged_in)
+    return render_template('index.html', userlist=userlist)
 
 # Welcome page after a user signs in
 @app.route("/welcome", methods=['GET'])
 @login_required
 def welcome_page():
     user = user_dao.find_user_by_hash(session['username'])
-    logged_in = True
-    return render_template('welcome.html', user=user, logged_in=logged_in)
+    return render_template('welcome.html', user=user)
 
 @app.route("/signup", methods=['Get'])
 def serve_signup_form():
-    if session['username'] is not None:
-        logged_in = True
-    return render_template('signup.html', logged_in=logged_in)
+    return render_template('signup.html')
 
 # For now this is attached to posting the form in the navbar, but its a basic
 # mechanism to insert a user based off a form
 @app.route("/signup", methods=['POST'])
 def post_signup_form():
-    # TODO Take out this hard coding when names are added into the forms
     name = request.form.get('username')
     email = request.form.get('useremail')
     password = request.form.get('userpassword')

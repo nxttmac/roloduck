@@ -24,10 +24,6 @@
       <button type="button" class="btn btn-primary btn-lg">Learn More</button>
       <button type="button" class="btn btn-success btn-lg">Get Started</button>
     </div>
-
-    {% for user in userlist %}
-    <p>{{user.name}} has email {{user.email}}</p>
-    {% endfor %}
   </div>
   {% include 'common/footer.html' %}
 </div>    

@@ -6,7 +6,7 @@
     {% include 'common/navbar.html' %}
     <div class="container">
         {% block content %}
-        {% if logged_in %}
+        {% if session.username %}
             <div class="jumbotron">
                 <h2 class="headline">You're already a user you silly goose!</h2>
                 <div id="slider" class="pull-right">
@@ -28,7 +28,7 @@
                 </div>
             </div>
         {% endif %}
-        {% if not logged_in %}
+        {% if not session.username %}
             <form action="/login" method="POST" role="form">
                 <div class="form-group" >
                     <label class="sr-only" for="exampleInputName2">Full name</label>
