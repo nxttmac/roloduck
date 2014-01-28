@@ -37,11 +37,13 @@ def post_signup_form():
     name = request.form.get('username')
     email = request.form.get('useremail')
     password = request.form.get('userpassword')
+    print '*************' + name + email + password
     # TODO hardcoded role to admin
     role = 1
     new_user = User.User(name, email, password, role)
-    login_user(new_user)
-    session['username'] = email+password
-    user_dao.insert_user(new_user)
+    if new_user is not None:
+        user_dao.insert_user(new_user)
+        session['username'] = email+password
+        login_user(new_user)
     return redirect('/welcome')
 
