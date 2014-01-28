@@ -20,15 +20,18 @@ def login_page_post():
     session['username'] = email+password
     #print sha.hexdigest()
     user = user_dao.find_user_by_hash(session['username'])
+    if user is None:
+        return redirect('/login')
     login_user(user)
     return redirect('/welcome')
 
 # Create user loader function
 @login_manager.user_loader
 def load_user(userid):
-    user = user_dao.find_user_by_hash(session['username'])
-    if user is not None:
-        return user
+    if session['username'] is not None:
+        user = user_dao.find_user_by_hash(session['username'])
+        if user is not None:
+            return user
 
 @app.route("/logout")
 @login_required

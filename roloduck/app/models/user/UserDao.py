@@ -24,8 +24,9 @@ class UserDao(object):
 
     def find_user_by_hash(self, hash):
         user = self.user.find_one({'hash': hash})
-        actual_user = User.User(user['name'], user['email'], user['password'], user['role'])
-        return actual_user
+        if user is not None:
+            actual_user = User.User(user['name'], user['email'], user['password'], user['role'])
+            return actual_user
 
     def insert_user(self, new_user):
         store_user = [{'name': new_user.name, 'email': new_user.email,
