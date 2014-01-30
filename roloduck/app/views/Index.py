@@ -1,7 +1,7 @@
 __author__ = 'Peter Johnston'
 
 # Import our database connection and application
-from flask import render_template, request, redirect, session, url_for
+from flask import render_template, request, redirect, session, url_for, flash
 
 from app import app, db
 from app.models.user import UserDao, User
@@ -17,7 +17,14 @@ user_dao = UserDao.UserDao(db)
 @app.route("/", methods=['GET'])
 def roloduck_index():
     userlist = user_dao.find_users()
-    return render_template('index.html', userlist=userlist)
+    try:
+        session['username']
+    except KeyError:
+        session['username'] = None
+    if session['username'] is not None:
+        return redirect('/projects')
+    else:
+        return render_template('index.html', userlist=userlist)
 
 # Welcome page after a user signs in
 @app.route("/welcome", methods=['GET'])
@@ -50,7 +57,8 @@ def post_signup_form():
         user_dao.insert_user(new_user)
         session['username'] = email+password
         login_user(new_user)
-    return redirect('/welcome')
+        flash(u'Welcome to Roloduck!', 'success')
+        return redirect('/')
 
 # A page only to be shown for debugging purposes
 # Will be updated to show current database content/state
