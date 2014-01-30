@@ -3,6 +3,7 @@ __author__ = 'Peter Johnston'
 from flask import Flask
 from flask.ext.login import LoginManager
 from pymongo import MongoClient
+from app.secretkey import secret_key
 
 
 # Setup the app as a Flask application
@@ -16,7 +17,7 @@ db = client.roloduck
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "/login"
-app.secret_key = '_`lVF)*H0b+$e Ge00?4sI]RDh:C6Dx!e._1}=-}@QSFiAMoK-4ocB#q:>L-K?q-'
+app.secret_key = secret_key
 
 from views import Project
 from views import Index

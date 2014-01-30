@@ -30,6 +30,7 @@
         {% endif %}
         {% if not session.username %}
             <form action="/signup" method="POST" role="form">
+                <h3>Tell us about yourself: </h3>
                 <div class="form-group" >
                     <label class="sr-only" for="exampleInputName2">Full name</label>
                     <input type="name" class="form-control" name="username" id="username" placeholder="Enter full name">
@@ -42,12 +43,163 @@
                     <label class="sr-only" for="exampleInputPassword2">Password</label>
                     <input type="password" class="form-control" name="userpassword" id="userpassword" placeholder="Password">
                 </div>
-                <div class="checkbox">
-                    <label>
-                    <input type="checkbox"><span style="color:#fff;"> Remember me</span>
-                    </label>
+                <h3>We'll need some information about your company as well: </h3>
+                <div class="form-group" >
+                    <label class="sr-only" for="exampleInputCompany2">Full name</label>
+                    <input type="name" class="form-control" name="company" id="company" placeholder="Enter company name">
                 </div>
-                <button type="submit" class="btn btn-primary signin-button">Sign in</button>
+
+            <!--Plans Section -->
+            <h3>Choose the plan that's best for you.</h3>
+            <h3>Remember you can upgrade at any time: </h3>
+            <br />
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                        <button class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Starter Plan
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="the-price">
+                                    <h1 style="text-align: center;">
+                                        Free!
+                                    </h1>
+                                </div>
+                                <table class="table" style="text-align: center;">
+                                    <tr>
+                                        <td>
+                                            1 Company
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            10 Projects
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            25 Partners
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            1000 Contacts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ------------------------------
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            ------------------------------
+                                        </td>
+                                </table>
+                            </div>
+                            
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-md-3">
+                        <button class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Pro Plan</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="the-price">
+                                    <h1 style="text-align: center;">
+                                        $20<span class="subscript">/mo</span></h1>
+                                </div>
+                                <table class="table" style="text-align: center;">
+                                    <tr>
+                                        <td>
+                                            1 Company
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            100 Projects
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Unlimited Partners
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            Unlimited Contacts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Import/Export Contacts
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            Weekly Reports
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-md-3">
+                        <button class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Custom</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="the-price">
+                                    <h1 style="text-align: center;">
+                                        $35<span class="subscript">/mo</span></h1>
+                                </div>
+                                <table class="table" style="text-align: center;">
+                                    <tr>
+                                        <td>
+                                            Unlimited errrrrrrthang!!!
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            Holy quacks thats a great deal!
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            300K API Access
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            500MB Storage
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Custom Cloud Services
+                                        </td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>
+                                            Weekly Reports
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <h3>Make sure you have reviewed, then click away: </h3>
+                <button type="submit" class="btn btn-primary signin-button">Make my account</button>
             </form>
         {% endif %}
         {% endblock %}

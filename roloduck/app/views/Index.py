@@ -1,7 +1,7 @@
 __author__ = 'Peter Johnston'
 
 # Import our database connection and application
-from flask import render_template, request, redirect, session
+from flask import render_template, request, redirect, session, url_for
 
 from app import app, db
 from app.models.user import UserDao, User
@@ -26,7 +26,7 @@ def welcome_page():
     user = user_dao.find_user_by_hash(session['username'])
     return render_template('welcome.html', user=user)
 
-@app.route("/signup", methods=['Get'])
+@app.route("/signup", methods=['GET'])
 def serve_signup_form():
     return render_template('signup.html')
 
@@ -37,7 +37,6 @@ def post_signup_form():
     name = request.form.get('username')
     email = request.form.get('useremail')
     password = request.form.get('userpassword')
-    print '*************' + name + email + password
     # TODO hardcoded role to admin
     role = 1
     new_user = User.User(name, email, password, role)
@@ -47,7 +46,18 @@ def post_signup_form():
         login_user(new_user)
     return redirect('/welcome')
 
-@app.route("/db", methods=['Get'])
+# A page only to be shown for debugging purposes
+# Will be updated to show current database content/state
+@app.route("/db", methods=['GET'])
 def serve_database_info():
     userlist = user_dao.find_users()
     return render_template('database-view.html', userlist=userlist)
+
+# Serve the page to add a new user to your team/client/company
+@app.route("/adduser", methods=['GET'])
+def serve_create_company_user():
+    user = user_dao.find_user_by_hash(session['username'])
+    if user is not None:
+        if user['role']== 1:
+            return render_template('create-user.html', currentUser=user)
+    return redirect(url_for('login_page.html'))

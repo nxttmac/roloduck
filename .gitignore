@@ -58,3 +58,7 @@ docs/_build/
 
 # Eclipse project files #
 .settings
+
+# Specific app files
+/roloduck/templates/database-view.html
+/roloduck/app/secretkey.py
