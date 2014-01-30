@@ -34,11 +34,14 @@ def serve_signup_form():
 # mechanism to insert a user based off a form
 @app.route("/signup", methods=['POST'])
 def post_signup_form():
+    # Retrive the information from the form
     name = request.form.get('userName')
     email = request.form.get('userEmail')
     password = request.form.get('userPassword')
     companyName = request.form.get('companyName')
+    # TODO hardcoded sub type
     companySubscriptionType = User.COMPANY_TYPE_FREE
+    # Create the company
     company = {'companyName': companyName, 'companySubscriptionType': companySubscriptionType}
     # TODO hardcoded role to admin
     role = User.ROLE_ADMIN
