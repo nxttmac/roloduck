@@ -5,14 +5,14 @@
 <body>
 {% include 'common/navbar.html' %}
 <div class="container">
-    <div id="slider" class="pull-right">
-        <li id="slider-1"><img src="/static/img/slider-dot-active.png" /></li>
   {% include 'common/flash_messages.html' %}
   <ol class="breadcrumb">
     <span> <strong>{{ user.company.companyName }}</strong> <span class="spacer40"></span></span>
+    <li class="active">Projects</li>
   </ol>
 
   <nav class="navbar navbar-default">
+    <span class="navbar-jump">Jump to:</span>
     <div class="btn-group jump-dropdown">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         Select Project
@@ -32,11 +32,8 @@
         <li><a href="#">Something Else</a></li>
       </ul>
     </div>
-    </p>
-      <button type="button" class="btn btn-success btn-lg">Get Started</button>
-    </div>
-  </div>
     <button class="btn btn-primary navbar-btn navbar-right add-button">+ Add New Project</button>
+  </nav>
 
   <!-- This is all sample data.  Final implementation is to loop through paginated Projects results -->
   <table class="table table-striped">
