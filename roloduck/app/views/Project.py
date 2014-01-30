@@ -8,7 +8,7 @@ from app.models.user import UserDao
 # Create our UserDao to connect to the user collection
 user_dao = UserDao.UserDao(db)
 
-# Will serve the project list page
+# Serve the project list page
 @app.route("/project", methods=['GET'])
 @login_required
 def project_index():
@@ -18,7 +18,14 @@ def project_index():
     else:
         return render_template('project/projects-list.html')
 
+# Serve the create project template
 @app.route("/project/create", methods=['GET'])
 @login_required
 def serve_project_create_page():
     return render_template('project/create-project.html')
+
+# Serve a page for an individual project
+#@app.route("/project/project-<projectId>")
+#@login_required
+#def serve_individual_project_page(projectId):
+    # Find this project in the database

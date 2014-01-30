@@ -1,4 +1,4 @@
-__author__ = 'pjo336'
+__author__ = 'Peter Johnston'
 
 import hashlib
 
@@ -6,9 +6,14 @@ import hashlib
 ROLE_USER = 0
 ROLE_ADMIN = 1
 
+# Defined company subscription types
+COMPANY_TYPE_FREE = 0
+COMPANY_TYPE_PRO = 1
+COMPANY_TYPE_PREMIUM = 2
+
 class User():
 
-    def __init__(self, name, email, password, role):
+    def __init__(self, name, email, password, role, company):
         temp = password
         self.id =  self.hide_user_password(temp)
         self.name = name
@@ -17,6 +22,7 @@ class User():
         self.password = password
         self.role = role
         self.hash = email + password
+        self.company = company
 
     def is_authenticated(self):
         return True

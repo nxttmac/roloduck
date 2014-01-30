@@ -34,12 +34,15 @@ def serve_signup_form():
 # mechanism to insert a user based off a form
 @app.route("/signup", methods=['POST'])
 def post_signup_form():
-    name = request.form.get('username')
-    email = request.form.get('useremail')
-    password = request.form.get('userpassword')
+    name = request.form.get('userName')
+    email = request.form.get('userEmail')
+    password = request.form.get('userPassword')
+    companyName = request.form.get('companyName')
+    companySubscriptionType = User.COMPANY_TYPE_FREE
+    company = {'companyName': companyName, 'companySubscriptionType': companySubscriptionType}
     # TODO hardcoded role to admin
-    role = 1
-    new_user = User.User(name, email, password, role)
+    role = User.ROLE_ADMIN
+    new_user = User.User(name, email, password, role, company)
     if new_user is not None:
         user_dao.insert_user(new_user)
         session['username'] = email+password
