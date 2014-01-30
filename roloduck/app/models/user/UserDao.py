@@ -9,7 +9,10 @@ class UserDao(object):
         list = []
         for each_user in self.user.find():
             list.append({'name': each_user['name'],
-                         'email': each_user['email']})
+                         'role': each_user['role'],
+                         'email': each_user['email'],
+                         'password': each_user['password'],
+                         'hash': each_user['hash']})
         return list
 
     def find_user_by_id(self, id):

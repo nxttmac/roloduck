@@ -47,3 +47,7 @@ def post_signup_form():
         login_user(new_user)
     return redirect('/welcome')
 
+@app.route("/db", methods=['Get'])
+def serve_database_info():
+    userlist = user_dao.find_users()
+    return render_template('database-view.html', userlist=userlist)

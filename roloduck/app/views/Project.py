@@ -1,4 +1,4 @@
-__author__ = 'pjo336'
+__author__ = 'Peter Johnston'
 
 from flask import render_template, url_for, redirect
 from app import app, db
