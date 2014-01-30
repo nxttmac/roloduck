@@ -1,3 +1,5 @@
+__author__ = 'Peter Johnston'
+
 from app.models.user import User
 class UserDao(object):
 

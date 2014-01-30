@@ -1,6 +1,7 @@
 <head>
   <title>RoloDuck</title>
   {% include 'common/header-imports.html' %}
+  {% include 'imports/index-slider-import.html' %}
 </head>
 <body>
 {% include 'common/navbar.html' %}
@@ -20,9 +21,6 @@
       RoloDuck make it easy to manage and share contacts across teams.<br />
       Keep all your information in one place and control who sees what.
     </p>
-    {% for user in userlist %}
-    <p>{{user.name}}' has email {{user.email}}</p>
-    {% endfor %}
     <div>
       <button type="button" class="btn btn-primary btn-lg">Learn More</button>
       <a href="/signup" type="button" class="btn btn-success btn-lg">Get Started</a>
