@@ -1,4 +1,6 @@
+__author__ = 'Andrew Ertell'
 __author__ = 'Peter Johnston'
+# ©Roloduck 2014
 
 # Import our database connection and application
 from flask import render_template, request, redirect, session, url_for, flash
@@ -16,14 +18,14 @@ user_dao = UserDao.UserDao(db)
 @app.route("/index.html", methods=['GET'])
 @app.route("/", methods=['GET'])
 def roloduck_index():
+    # No exception thrown for lists
     userlist = user_dao.find_users()
     try:
-        session['username']
+        if session['username'] is not None:
+            return redirect('/projects')
+        else:
+            return render_template('index.html', userlist=userlist)
     except KeyError:
-        session['username'] = None
-    if session['username'] is not None:
-        return redirect('/projects')
-    else:
         return render_template('index.html', userlist=userlist)
 
 # Welcome page after a user signs in
@@ -33,6 +35,7 @@ def welcome_page():
     user = user_dao.find_user_by_hash(session['username'])
     return render_template('welcome.html', user=user)
 
+# Serve the signup form
 @app.route("/signup", methods=['GET'])
 def serve_signup_form():
     return render_template('signup.html')

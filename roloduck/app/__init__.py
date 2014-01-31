@@ -1,4 +1,6 @@
+__author__ = 'Andrew Ertell'
 __author__ = 'Peter Johnston'
+# ©Roloduck 2014
 
 from flask import Flask
 from flask.ext.login import LoginManager

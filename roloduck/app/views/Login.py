@@ -1,4 +1,6 @@
+__author__ = 'Andrew Ertell'
 __author__ = 'Peter Johnston'
+# ©Roloduck 2014
 
 from flask import render_template, redirect, request, session, flash
 from flask.ext.login import logout_user, login_user, login_required
@@ -19,11 +21,12 @@ def login_page_post():
     password = request.form['userpassword']
     hash_formula = email + password
     user = user_dao.find_user_by_hash(hash_formula)
+    # Login was not successful
     if user is None:
         flash(u'Invalid login!  Please try again.', 'danger')
         return redirect('/login')
+    # Login was successful so officially log the user is and add their hash to the session
     login_user(user)
-    # Create the user name for the session based on our hash sequence
     #sha = hashlib.sha1(email + password)
     session['username'] = hash_formula
     flash(u'Welcome back, %s.' % user.name, 'success')

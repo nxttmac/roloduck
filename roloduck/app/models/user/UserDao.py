@@ -1,4 +1,6 @@
+__author__ = 'Andrew Ertell'
 __author__ = 'Peter Johnston'
+# ©Roloduck 2014
 
 from app.models.user import User
 class UserDao(object):
