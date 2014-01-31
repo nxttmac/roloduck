@@ -1,8 +1,11 @@
 __author__ = 'Andrew Ertell'
 __author__ = 'Peter Johnston'
-# ©Roloduck 2014
+# Roloduck 2014
 
 from app.models.user import User
+from bson.objectid import ObjectId
+
+
 class UserDao(object):
 
     def __init__(self, database):
@@ -22,7 +25,7 @@ class UserDao(object):
         return list
 
     def find_user_by_id(self, id):
-        user = self.user.find_one({"_id": id})
+        user = self.user.find_one({"_id": ObjectId(id)})
         return self.convert_to_user(user)
 
     def find_user_by_email(self, emailAddress):
@@ -30,8 +33,12 @@ class UserDao(object):
         return self.convert_to_user(user)
 
     def find_user_by_hash(self, hash):
-        user = self.user.find_one({'hash': hash})
-        return self.convert_to_user(user)
+        try:
+            user = self.user.find_one({'hash': hash})
+            return self.convert_to_user(user)
+        except KeyError:
+            # TODO Do something with the error
+            print 'Key Error bro!'
 
     def insert_user(self, new_user):
         store_user = [{'name': new_user.name, 'email': new_user.email,

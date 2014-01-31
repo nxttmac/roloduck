@@ -14,7 +14,7 @@
   </ol>
   <h1>Add a Project</h1>
 <div style="width:700px">
-  <form action="/login" method="POST" role="form">
+  <form action="/project/create" method="POST" role="form">
     <div class="form-group" >
       <label for="projectname">Project Name</label>
       <input type="text" class="form-control" name="projectname" id="projectname" placeholder="Project Name">
@@ -25,7 +25,7 @@
       <textarea class="form-control" name="projectdescription" id="projectdescription" placeholder="Add a description to explain more about the project" rows="3"></textarea>
     </div>
     <!-- only enabled after the user enters a Project Name -->
-    <button type="submit" disabled="disabled" class="btn btn-primary btn-lg signin-button">Submit</button>
+    <button type="submit" class="btn btn-primary btn-lg signin-button">Submit</button>
   </form>
 </div>
   {% include 'common/footer.html' %}

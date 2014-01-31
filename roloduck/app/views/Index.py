@@ -1,6 +1,6 @@
 __author__ = 'Andrew Ertell'
 __author__ = 'Peter Johnston'
-# ©Roloduck 2014
+# Roloduck 2014
 
 # Import our database connection and application
 from flask import render_template, request, redirect, session, url_for, flash

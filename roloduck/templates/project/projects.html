@@ -19,23 +19,15 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <!-- This is all sample data.  Final implementation is to loop through ALL Projects results -->
-        <li><a href="#">My Awesome Project</a></li>
-        <li><a href="#">Another Cool Project</a></li>
-        <li><a href="#">Some Other Project</a></li>
-        <li><a href="#">Frozen (AMC/Dolby)</a></li>
-        <li><a href="#">The Wind Rises</a></li>
-        <li><a href="#">Guardians of the Galaxy</a></li>
-        <li><a href="#">Wreck it Ralph</a></li>
-        <li><a href="#">Lorem Ipsum</a></li>
-        <li><a href="#">Home Entertainment Campaign</a></li>
-        <li><a href="#">Something Else</a></li>
+        {% for each_project in projects %}
+        <!-- TODO dont know how to link the project id, ideas? -->
+          <li><a href="/project">{{each_project.project_name}}</a></li>
+        {% endfor %}
       </ul>
     </div>
     <a href="/project/create"><button class="btn btn-primary navbar-btn navbar-right add-button">+ Add New Project</button></a>
   </nav>
 
-  <!-- This is all sample data.  Final implementation is to loop through paginated Projects results -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -46,66 +38,14 @@
       </tr>      
     </thead>
     <tbody>
-      <tr>
-        <td><a href="#">My Awesome Project</a></td>
-        <td><a href="#">4 Partners</a></td>
-        <td><a href="#">10 Contacts</a></td>
-        <td>1 day ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Another Cool Project</a></td>
-        <td><a href="#">5 Partners</a></td>
-        <td><a href="#">15 Contacts</a></td>
-        <td>5 days ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Some Other Project</a></td>
-        <td><a href="#">10 Partners</a></td>
-        <td><a href="#">40 Contacts</a></td>
-        <td>2 weeks ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Frozen (AMC/Dolby)</a></td>
-        <td><a href="#">6 Partners</a></td>
-        <td><a href="#">25 Contacts</a></td>
-        <td>3 weeks ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">The Wind Rises</a></td>
-        <td><a href="#">8 Partners</a></td>
-        <td><a href="#">42 Contacts</a></td>
-        <td>1 month ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Guardians of the Galaxy</a></td>
-        <td><a href="#">10 Partners</a></td>
-        <td><a href="#">22 Contacts</a></td>
-        <td>1 month ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Wreck it Ralph</a></td>
-        <td><a href="#">12 Partners</a></td>
-        <td><a href="#">31 Contacts</a></td>
-        <td>2 months ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Lorem Ipsum</a></td>
-        <td><a href="#">14 Partners</a></td>
-        <td><a href="#">14 Contacts</a></td>
-        <td>3 months ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Home Entertainment Campaign</a></td>
-        <td><a href="#">27 Partners</a></td>
-        <td><a href="#">105 Contacts</a></td>
-        <td>6 months ago</td>
-      </tr>
-      <tr>
-        <td><a href="#">Something Else</a></td>
-        <td><a href="#">11 Partners</a></td>
-        <td><a href="#">69 Contacts</a></td>
-        <td>1 year ago</td>
-      </tr>
+      {% for each_project in projects %}
+        <tr>
+          <td><a href="#">{{each_project.project_name}}</a></td>
+          <td><a href="#">4 Partners</a></td>
+          <td><a href="#">10 Contacts</a></td>
+          <td>1 day ago</td>
+        </tr>
+      {% endfor %}
   </table>
   <div>
     <ul class="pagination pull-right">

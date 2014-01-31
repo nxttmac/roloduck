@@ -1,6 +1,6 @@
 __author__ = 'Andrew Ertell'
 __author__ = 'Peter Johnston'
-# ©Roloduck 2014
+# Roloduck 2014
 
 from flask import render_template, redirect, request, session, flash
 from flask.ext.login import logout_user, login_user, login_required
