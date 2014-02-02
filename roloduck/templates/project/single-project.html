@@ -6,9 +6,9 @@
 <body>
 {% include 'common/navbar.html' %}
 <div class="container">
-<h1>{{project.project_name}}</h1>
-
-{% include 'common/footer.html' %}
+    {% include 'common/flash_messages.html' %}
+    <h1>{{project.project_name}}</h1>
+    {% include 'common/footer.html' %}
 </div>
 </body>
 </html>

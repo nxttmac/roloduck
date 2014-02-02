@@ -7,6 +7,7 @@ from app import app, db
 from flask.ext.login import session, login_required
 from app.models.user import UserDao
 from app.models.project import ProjectDao, Project
+import time
 
 # Create our Daos to connect to the collections
 user_dao = UserDao.UserDao(db)
@@ -52,7 +53,7 @@ def post_project_create_page():
         new_project = Project.Project(project_name, project_description, user.company, user.id)
         if new_project is not None:
             project_dao.insert_project(new_project)
-            flash(u'You have successfully added a project', 'success')
+            flash(u'You have successfully added a new project', 'success')
             return render_template('project/single-project.html', project=new_project)
 
 # Serve a page for an individual project
