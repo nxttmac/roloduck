@@ -60,6 +60,12 @@ def post_project_create_page():
 @app.route("/project/<project_id>")
 @login_required
 def serve_individual_project_page(project_id):
-    # Find this project in the database
-    project = project_dao.find_project_by_id(project_id)
-    return render_template('project/single-project.html', project=project)
+    user = user_dao.find_user_by_hash(session['username'])
+    if user is None:
+        flash(u'Please log in to see this page', 'warning')
+        return render_template('index.html', user=user)
+    else:    
+        # Find this project in the database
+        project = project_dao.find_project_by_id(project_id)
+        return render_template('project/single-project.html', project=project, user=user)
+        

@@ -6,10 +6,13 @@
 {% include 'common/navbar.html' %}
 <div class="container">
   {% include 'common/flash_messages.html' %}
+
   <ol class="breadcrumb">
     <span> <strong>{{ user.company.companyName }}</strong> <span class="spacer40"></span></span>
     <li class="active">Projects</li>
   </ol>
+
+  <h1 style="margin-bottom:20px"> All Projects </h1>
 
   <nav class="navbar navbar-default">
     <span class="navbar-jump">Jump to:</span>
@@ -54,6 +57,7 @@
         </tr>
       {% endfor %}
   </table>
+
   <div>
     <ul class="pagination pull-right">
       <li class="disabled"><a href="#">&laquo;</a></li>

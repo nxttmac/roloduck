@@ -7,7 +7,188 @@
 {% include 'common/navbar.html' %}
 <div class="container">
     {% include 'common/flash_messages.html' %}
+    <ol class="breadcrumb">
+      <span> <strong>{{ user.company.companyName }}</strong> <span class="spacer40"></span></span>
+      <li class="active"><a href = "/projects">Projects</a></li>
+      <li>{{project.project_name}}</li>
+    </ol>
+    
     <h1>{{project.project_name}}</h1>
+
+    <nav class="navbar navbar-default">
+      <span class="navbar-jump">Jump to:</span>
+      <div class="btn-group jump-dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          Select Partner
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          {% for each_partner in partners %}
+            <li>
+              <a href="/project/partner/" onclick="location.href=this.href+ '{{each_partner._id}}';return false;">
+                {{each_partner.partner_name}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <a href="/partner/create"><button class="btn btn-primary navbar-btn navbar-right add-button">+ Add New Partner</button></a>
+    </nav>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a href="/project/partner/" onclick="location.href=this.href+'Fandango';return false;">Fandango</a>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Role</th>
+              <th>Title</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>      
+          </thead>
+          <tbody>
+            <tr>
+              <td>Michael</td>
+              <td>Otto</td>
+              <td>Sales</td>
+              <td>Account Executive</td>
+              <td>michael.otto@fandango.com</td>
+              <td>
+                <span style="padding:0px;">
+                  <img src="/static/img/phone_logo.png" />
+                </span>
+                (818) 310-2392 x141<br/>
+                <span style="padding:0 4px;">
+                  <img src="/static/img/cell_icon.png" />
+                </span>
+                (323) 615-0878
+              </td>
+            </tr>
+            <tr>
+              <td>Jane</td>
+              <td>Mellon</td>
+              <td>Sales</td>
+              <td>Account Manager</td>
+              <td>jane.mellon@fandango.com</td>
+              <td>
+                <span style="padding:0px;">
+                  <img src="/static/img/phone_logo.png" />
+                </span>
+                (818) 310-2392 x144<br/>
+                <span style="padding:0 4px;">
+                  <img src="/static/img/cell_icon.png" />
+                </span>
+                (323) 870-1283
+              </td>
+            </tr>
+            <tr>
+              <td>Amanda</td>
+              <td>Levy</td>
+              <td>AdOps</td>
+              <td>Ad Operations Coordinator</td>
+              <td>alevy@fandango.com</td>
+              <td>
+                <span style="padding:0px;">
+                  <img src="/static/img/phone_logo.png" />
+                </span>
+                (818) 310-2392 x148
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a href="/project/partner/" onclick="location.href=this.href+'Fandango';return false;">Microsoft</a>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Role</th>
+              <th>Title</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>      
+          </thead>
+          <tbody>
+            <tr>
+              <td>Carlos</td>
+              <td>Aparicio</td>
+              <td>Sales</td>
+              <td>Account Executive</td>
+              <td>CAparicio@microsoft.com</td>
+              <td>
+                <span style="padding:0px;">
+                  <img src="/static/img/phone_logo.png" />
+                </span>
+                (818) 345-2342<br/>
+                <span style="padding:0 4px;">
+                  <img src="/static/img/cell_icon.png" />
+                </span>
+                (323) 324-3743
+              </td>
+            </tr>
+            <tr>
+              <td>Nicole</td>
+              <td>Halembert</td>
+              <td>Sales</td>
+              <td>Account Manager</td>
+              <td>NHalembert@microsoft.com</td>
+              <td>
+                <span style="padding:0px;">
+                  <img src="/static/img/phone_logo.png" />
+                </span>
+                (818) 345-7343<br/>
+                <span style="padding:0 4px;">
+                  <img src="/static/img/cell_icon.png" />
+                </span>
+                (310) 342-3244
+              </td>
+            </tr>
+            <tr>
+              <td>Franco</td>
+              <td>Fernando</td>
+              <td>AdOps</td>
+              <td>Ad Operations Coordinator</td>
+              <td>FFernando@microsoft.com</td>
+              <td>
+                <span style="padding:0px;">
+                  <img src="/static/img/phone_logo.png" />
+                </span>
+                (818) 310-2392 x144
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<!-- WIP loop
+    {% for each_partner in partners %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+    {% endfor %}
+-->
     {% include 'common/footer.html' %}
 </div>
 </body>
