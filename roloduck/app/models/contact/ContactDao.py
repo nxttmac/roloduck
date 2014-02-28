@@ -16,8 +16,12 @@ class ContactDao(object):
         list = []
         for each_contact in self.contact.find():
             list.append({'_id': each_contact['_id'],
-                         'contact_name': each_contact['contact_name'],
-                         'contact_description': each_contact['contact_description'],
+                         'contact_firstName': each_contact['contact_firstName'],
+                         'contact_lastName': each_contact['contact_lastName'],
+                         'contact_role': each_contact['contact_role'],
+                         'contact_title': each_contact['contact_title'],
+                         'contact_email': each_contact['contact_email'],
+                         'contact_phone': each_contact['contact_phone'],
                          'client_id': each_contact['client_id'],
                          'created_by_user': each_contact['created_by_user'],
                          'date_created': each_contact['date_created']
@@ -37,8 +41,12 @@ class ContactDao(object):
         return self.convert_to_contact_dict(contact)
 
     def insert_contact(self, contact):
-        store_contact = [{'contact_name': contact.contact_name,
-                         'contact_description': contact.contact_description,
+        store_contact = [{'contact_firstName': contact.contact_firstName,
+                         'contact_lastName': contact.contact_lastName,
+                         'contact_role': contact.contact_role,
+                         'contact_title': contact.contact_title,
+                         'contact_email': contact.contact_email,
+                         'contact_phone': contact.contact_phone,
                          'client_id': contact.client_id,
                          'created_by_user': contact.created_by_user,
                          'date_created': contact.date_created
@@ -51,8 +59,12 @@ class ContactDao(object):
     # A helper method to convert a contactDao model to an actual Contact model
     def convert_to_contact(self, contact):
         if contact is not None:
-            actual_contact = Contact.Contact(contact['contact_name'], 
-                                             contact['contact_description'],
+            actual_contact = Contact.Contact(contact['contact_firstName'], 
+                                             contact['contact_lastName'],
+                                             contact['contact_role'],
+                                             contact['contact_title'],
+                                             contact['contact_email'],
+                                             contact['contact_phone'],
                                              contact['client_id'], 
                                              contact['created_by_user'],
                                              contact['date_created']
@@ -61,8 +73,12 @@ class ContactDao(object):
 
     # A helper method to create the contact dict
     def convert_to_contact_dict(self, contact):
-        return {'contact_name': contact['contact_name'],
-                         'contact_description': contact['contact_description'],
+        return {'contact_firstName': contact['contact_firstName'],
+                         'contact_lastName': contact['contact_lastName'],
+                         'contact_role': contact['contact_role'],
+                         'contact_title': contact['contact_title'],
+                         'contact_email': contact['contact_email'],
+                         'contact_phone': contact['contact_phone'],
                          'client_id': contact['client_id'],
                          'created_by_user': contact['created_by_user'],
                          'date_created': contact['date_created']

@@ -2,6 +2,7 @@
 <head>
     <title>RoloDuck</title>
     {% include 'common/header-imports.html' %}
+    <script type="text/javascript" src="/static/js/contact_form.js"></script>
 </head>
 <body>
 {% include 'common/navbar.html' %}
@@ -38,32 +39,38 @@
       <input type="text" class="form-control" name="contactemail" id="contactemail" placeholder="Contact Email">
     </div>
 
-    <label for="contactemail">Phone</label><br />
+    <label for="contactphone">Phone</label><br />
     <div class="input-group">
       <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          <span style="padding:0px;">
-            <img src="/static/img/phone_logo.png" />
-          </span> Land line <span class="caret"></span>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="contactphone[0].dropdown">
+          <span style="padding:0px 5px 0 0;">
+            <img src="/static/img/phone_icon.png" style="position:relative; top:-1px;"/>
+          </span> Land Line <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-          <li><a href="#">
-            <span style="padding:0px;">
-              <img src="/static/img/phone_logo.png" />
+          <li><a onclick="change('landline', 0)">
+            <span style="padding:0px 5px 0 0;">
+              <img src="/static/img/phone_icon.png" style="position:relative; top:-1px;" />
             </span> Land line</a>
           </li>
-          <li><a href="#">
-            <span style="padding:0 4px;">
-              <img src="/static/img/cell_icon.png" />
+          <li><a onclick="change('cell', 0)">
+            <span style="padding:0 9px 0 3px;">
+              <img src="/static/img/cell_icon.png" style="position:relative; top:-1px;" />
             </span> Cell Phone</a></li>
-          <li><a href="#">Fax</a></li>
+          <li><a onclick="change('fax', 0)">
+            <span style="padding:0 5px 0 0;">
+              <img src="/static/img/fax_icon.png" style="position:relative; top:-1px;" />
+            </span> Fax</a></li>
           <li class="divider"></li>
-          <li><a href="#">Other</a></li>
+          <li><a onclick="change('other', 0)">Other</a></li>
         </ul>
       </div><!-- /btn-group -->
-      <input type="text" class="form-control" name="contactphone" id="contact phone" placeholder="(XXX) XXX-XXX xXXX">
+      <input type="text" class="form-control" name="contactphone[0].number" id="contactphone[0].number" placeholder="(XXX) XXX-XXX xXXX">
     </div><!-- /input-group -->
-    <br />
+    <input type="text" class="form-control" name="contactphone[0].type" id="contactphone[0].type" placeholder="landline">
+    <div id="extra"></div>
+    <a onclick="addnumber()" class="pull-right" style="margin-top:5px; cursor:pointer;">+ Add another number</a>
+    <br /><br />
     <!-- only enabled after the user enters a Contact Name -->
     <div class="form-group" >
       <button type="submit" class="btn btn-primary btn-lg signin-button">Submit</button>

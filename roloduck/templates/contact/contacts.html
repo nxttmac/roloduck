@@ -24,7 +24,7 @@
       <ul class="dropdown-menu">
         {% for each_contact in contacts %}
           <li>
-            <a href="/project/" onclick="location.href=this.href+ '{{each_project._id}}';return false;">
+            <a href="/project/" onclick="location.href=this.href+ '{{each_contact._id}}';return false;">
               {{each_contact.contact_firstName}}
             </a>
           </li>
@@ -49,14 +49,13 @@
     <tbody>
       {% for each_contact in contacts %}
         <tr>
-          <td>
-            <a href="/contact/" onclick="location.href=this.href+ '{{each_contact._id}}';return false;">
-              {{each_contact.contact_firstName}}
-            </a>
-          </td>
-          <td><a href="#">4 Partners</a></td>
-          <td><a href="#">10 Contacts</a></td>
-          <td>1 day ago</td>
+          <td>{{each_contact.contact_firstName}}</td>
+          <td>{{each_contact.contact_lastName}}</td>
+          <td>{WIP}</td>
+          <td>{{each_contact.contact_role}}</td>
+          <td>{{each_contact.contact_title}}</td>
+          <td>{{each_contact.contact_email}}</td>
+          <td>{{each_contact.contact_phone}}</td>
         </tr>
       {% endfor %}
   </table>
