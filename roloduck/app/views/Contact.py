@@ -57,7 +57,7 @@ def post_contact_create_page():
         # TODO Use getters for company and id
         new_contact = Contact.Contact(contact_firstName, contact_lastName, contact_role, contact_title, contact_email, contact_phone, user.company, user.id)
         if new_contact is not None:
-            contact_dao.insert_contact(new_contact)
+            contact_dao.insert_obj(new_contact.get_contact_map())
             flash(u'You have successfully added a new contact', 'success')
             return render_template('contact/contacts.html', contact=new_contact, page="contacts")
 

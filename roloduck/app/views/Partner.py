@@ -10,6 +10,7 @@ from app.db.UserDao import UserDao
 from app.db.PartnerDao import PartnerDao
 from app.db.ProjectDao import ProjectDao
 from app.models.Partner import Partner
+from app.models.Contact import Contact
 
 # Create our Daos to connect to the collections
 user_dao = UserDao(db)
@@ -58,3 +59,18 @@ def post_partner_create_page():
             partner_dao.insert_obj(new_partner)
             flash(u'You have successfully added a new partner', 'success')
             return redirect('/partners')
+@app.route("/add")
+def add_contact():
+    partner = partner_dao.find_partner_by_id('53100c3b58f3375bf501e534')
+    real_partner = Partner(partner['partner_name'], partner['partner_description'],
+                           partner['client_id'], partner['created_by_user'], partner['contacts'])
+    contact = Contact('contact_first_name', 'contact_last_name',
+                 'contact_role', 'contact_title', 'contact_email', 
+                 'contact_phone', 'client_id', 'created_by_user').get_contact_map()
+    real_partner.add_contact_to_container(contact)
+    partner_dao.add_contact_to_partner('53100c3b58f3375bf501e534', real_partner)
+    return redirect('/partners')
+
+
+
+

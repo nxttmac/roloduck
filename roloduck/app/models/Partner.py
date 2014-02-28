@@ -23,6 +23,12 @@ class Partner():
         else:
             self.contacts = contacts
 
+    def add_contact_to_container(self, contact):
+        """
+        Add an contact to the contacts list
+        """
+        self.contacts.append(contact)
+
     def get_id(self):
         """
         Return the current Partners id
@@ -35,7 +41,6 @@ class Partner():
         """
         return self.date_created
 
-    # A helper method to create the partner dict
     def get_partner_map(self):
         """
         Return a JSON version of the current Partner. Used to store in a database
@@ -43,9 +48,9 @@ class Partner():
         change reflected in the database, we'll have to change it here as well
         """
         return {'partner_name': self.partner_name,
-                         'partner_description': self.partner_description,
-                         'client_id': self.client_id,
-                         'created_by_user': self.created_by_user,
-                         'date_created': self.date_created,
-                         'contacts': self.contacts
-                         }
+                'partner_description': self.partner_description,
+                'client_id': self.client_id,
+                'created_by_user': self.created_by_user,
+                'date_created': self.date_created,
+                'contacts': self.contacts
+                }

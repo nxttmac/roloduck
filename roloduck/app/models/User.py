@@ -14,6 +14,9 @@ COMPANY_TYPE_PRO = 1
 COMPANY_TYPE_PREMIUM = 2
 
 class User():
+    """
+    Represents a User of the site including their login information
+    """
 
     def __init__(self, name, email, password, role, company):
         temp = password
@@ -27,22 +30,41 @@ class User():
         self.company = company
 
     def is_authenticated(self):
+        """
+        Is the current user authenticated
+        """
         return True
 
     def is_active(self):
+        """
+        Is the current user active
+        """
         return True
 
     def is_anonymous(self):
+        """
+        Is the current user anonymous
+        """
         return False
 
     def get_id(self):
+        """
+        Return the current users id
+        """
         return unicode(self.id)
 
     def hash_sequence(self, email, password):
+        """
+        Create the login hash using the users email and password
+        """
+        # TODO is there any reason to use the email and pw instead of a uuid?
         sha = hashlib.sha1(email + password)
         return sha.hexdigest()
 
     def hide_user_password(self, password):
+        """
+        Hash the users password so it is stored encrpyted
+        """
         md5 = hashlib.md5(password)
         return md5.hexdigest()
 

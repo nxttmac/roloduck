@@ -19,7 +19,7 @@ project_dao = ProjectDao(db)
 @login_required
 def project_index():
     user = user_dao.find_user_by_hash(session['username'])
-    projects = project_dao.find_projects()
+    projects = project_dao.find_all()
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
@@ -53,9 +53,9 @@ def post_project_create_page():
         # TODO Use getters for company and id
         new_project = Project.Project(project_name, project_description, user.company, user.id)
         if new_project is not None:
-            project_dao.insert_project(new_project)
+            project_dao.insert_obj(new_project.get_project_map())
             flash(u'You have successfully added a new project', 'success')
-            return render_template('project/single-project.html', project=new_project, page="projects")
+            return render_template('project/single-project.html', user=user, project=new_project, page="projects")
 
 # Serve a page for an individual project
 @app.route("/project/<project_id>")
