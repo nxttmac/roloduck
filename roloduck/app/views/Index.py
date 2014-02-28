@@ -8,7 +8,8 @@ from flask import render_template, request, redirect, session, url_for, flash
 from app import app
 from app.db import db
 from app.db.UserDao import UserDao
-from app.models import User
+from app.models.User import User
+from app.models.User import COMPANY_TYPE_FREE, ROLE_ADMIN
 from flask.ext.login import login_required, login_user
 
 
@@ -52,16 +53,16 @@ def post_signup_form():
     password = request.form.get('userPassword')
     companyName = request.form.get('companyName')
     # TODO hardcoded sub type
-    companySubscriptionType = User.COMPANY_TYPE_FREE
+    companySubscriptionType = COMPANY_TYPE_FREE
     # Create the company
     company = {'companyName': companyName, 'companySubscriptionType': companySubscriptionType}
     # TODO hardcoded role to admin
-    role = User.ROLE_ADMIN
+    role = ROLE_ADMIN
     new_user = User(name, email, password, role, company)
     if new_user is not None:
-        user_dao.insert_user(new_user)
-        session['username'] = email+password
+        user_dao.insert_obj(new_user.get_user_map())
         login_user(new_user)
+        session['username'] = email+password
         flash(u'Welcome to Roloduck!', 'success')
         return redirect('/')
 

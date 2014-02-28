@@ -45,3 +45,18 @@ class User():
     def hide_user_password(self, password):
         md5 = hashlib.md5(password)
         return md5.hexdigest()
+
+    # A helper method to create the partner dict
+    def get_user_map(self):
+        """
+        Return a JSON version of the current User. Used to store in a database
+        Note: Anytime we add or remove a field from the User class, if we want the
+        change reflected in the database, we'll have to change it here as well
+        """
+        return {'name': self.name,
+                'email': self.email,
+                'password': self.password,
+                'role': self.role,
+                'company': self.company,
+                'hash': self.hash
+               }

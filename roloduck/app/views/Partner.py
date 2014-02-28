@@ -21,7 +21,7 @@ partner_dao = PartnerDao(db)
 @login_required
 def partner_index():
     user = user_dao.find_user_by_hash(session['username'])
-    partners = partner_dao.find_partners()
+    partners = partner_dao.find_all()
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
@@ -53,8 +53,8 @@ def post_partner_create_page():
         # Build the new partner using the info from our form
         # And the user that created it
         # TODO Use getters for company and id
-        new_partner = Partner(partner_name, partner_description, user.company, user.id)
+        new_partner = Partner(partner_name, partner_description, user.company, user.id).get_partner_map()
         if new_partner is not None:
-            partner_dao.insert_partner(new_partner)
+            partner_dao.insert_obj(new_partner)
             flash(u'You have successfully added a new partner', 'success')
             return redirect('/partners')

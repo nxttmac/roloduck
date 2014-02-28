@@ -29,14 +29,6 @@ class UserDao(RoloDuckDao):
             # TODO Do something with the error
             print 'Key Error bro!'
 
-    def insert_user(self, new_user):
-        store_user = [{'name': new_user.name, 'email': new_user.email,
-                        'password': new_user.password, 'role': new_user.role, 
-                        'hash': new_user.email+new_user.password,
-                        'company': new_user.company
-                        }]
-        self.collection.insert(store_user)
-
     def convert_to_user(self, user):
         if user is not None:
             actual_user = User(user['name'], user['email'], user['password'], user['role'], user['company'])
