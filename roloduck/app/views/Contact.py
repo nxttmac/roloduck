@@ -46,16 +46,20 @@ def post_contact_create_page():
         flash(u'Please log in to see this page', 'warning')
         return render_template('index.html', user=user)
     else:
-        contact_name = request.form.get('contactname')
-        contact_description = request.form.get('contactdescription')
+        contact_firstName = request.form.get('contactfirstname')
+        contact_lastName = request.form.get('contactlastname')
+        contact_role = request.form.get('contactrole')
+        contact_title = request.form.get('contacttitle')
+        contact_email = request.form.get('contactemail')
+        contact_phone = request.form.get('contactphone')
         # Build the new contact using the info from our form
         # And the user that created it
         # TODO Use getters for company and id
-        new_contact = Contact.Contact(contact_name, contact_description, user.company, user.id)
+        new_contact = Contact.Contact(contact_firstName, contact_lastName, contact_role, contact_title, contact_email, contact_phone, user.company, user.id)
         if new_contact is not None:
             contact_dao.insert_contact(new_contact)
             flash(u'You have successfully added a new contact', 'success')
-            return render_template('contact/single-contact.html', contact=new_contact, page="contacts")
+            return render_template('contact/contacts.html', contact=new_contact, page="contacts")
 
 # Serve a page for an individual contact
 @app.route("/contact/<contact_id>")

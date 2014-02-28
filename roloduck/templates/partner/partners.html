@@ -33,3 +33,15 @@
     </div>
     <a href="/partner/create"><button class="btn btn-primary navbar-btn navbar-right add-button">+ Add New Partner</button></a>
   </nav>
+
+  {% for each_partner in partners %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a href="/project/partner/" onclick="location.href=this.href+'Fandango';return false;">{{each_partner.partner_name}}</a>
+        </h3>
+      </div>
+      <div class="panel-body">
+      </div>
+    </div>
+  {% endfor %}
