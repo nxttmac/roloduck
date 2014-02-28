@@ -25,7 +25,7 @@ def partner_index():
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-        return render_template('partner/partners.html', user=user)
+        return render_template('partner/partners.html', user=user, page="partners")
 
 # Serve the create partner template
 @app.route("/partner/create", methods=['GET'])
@@ -36,7 +36,7 @@ def serve_partner_create_page():
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-        return render_template('partner/create.html', user=user)
+        return render_template('partner/create.html', user=user, page="partners")
 
 # Create the actual partner based on the submitted form
 @app.route("/partner/create", methods=['POST'])
@@ -56,4 +56,4 @@ def post_partner_create_page():
         if new_partner is not None:
             partner_dao.insert_partner(new_partner)
             flash(u'You have successfully added a new partner', 'success')
-            return render_template('partner/single-partner.html', partner=new_partner)
+            return render_template('partner/single-partner.html', partner=new_partner, page="partners")

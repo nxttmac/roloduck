@@ -23,7 +23,7 @@ def project_index():
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-        return render_template('project/projects.html', user=user, projects=projects)
+        return render_template('project/projects.html', user=user, projects=projects, page="projects")
 
 # Serve the create project template
 @app.route("/project/create", methods=['GET'])
@@ -34,7 +34,7 @@ def serve_project_create_page():
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-        return render_template('project/create.html', user=user)
+        return render_template('project/create.html', user=user, page="projects")
 
 # Create the actual project based on the submitted form
 @app.route("/project/create", methods=['POST'])
@@ -54,7 +54,7 @@ def post_project_create_page():
         if new_project is not None:
             project_dao.insert_project(new_project)
             flash(u'You have successfully added a new project', 'success')
-            return render_template('project/single-project.html', project=new_project)
+            return render_template('project/single-project.html', project=new_project, page="projects")
 
 # Serve a page for an individual project
 @app.route("/project/<project_id>")
@@ -67,5 +67,5 @@ def serve_individual_project_page(project_id):
     else:    
         # Find this project in the database
         project = project_dao.find_project_by_id(project_id)
-        return render_template('project/single-project.html', project=project, user=user)
+        return render_template('project/single-project.html', project=project, user=user, page="projects")
         

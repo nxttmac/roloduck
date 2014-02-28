@@ -21,6 +21,7 @@ login_manager.init_app(app)
 login_manager.login_view = "/login"
 app.secret_key = secret_key
 
+from views import Contact
 from views import Partner
 from views import Project
 from views import Index

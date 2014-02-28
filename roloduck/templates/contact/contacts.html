@@ -9,46 +9,49 @@
 
   <ol class="breadcrumb">
     <span> <strong>{{ user.company.companyName }}</strong> <span class="spacer40"></span></span>
-    <li class="active">Projects</li>
+    <li class="active">Contacts</li>
   </ol>
 
-  <h1 style="margin-bottom:20px"> All Projects </h1>
+  <h1 style="margin-bottom:20px"> All Contacts </h1>
 
   <nav class="navbar navbar-default">
     <span class="navbar-jump">Jump to:</span>
     <div class="btn-group jump-dropdown">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        Select Projects
+        Select Contact
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        {% for each_project in projects %}
+        {% for each_contact in contacts %}
           <li>
             <a href="/project/" onclick="location.href=this.href+ '{{each_project._id}}';return false;">
-              {{each_project.project_name}}
+              {{each_contact.contact_firstName}}
             </a>
           </li>
         {% endfor %}
       </ul>
     </div>
-    <a href="/project/create"><button class="btn btn-primary navbar-btn navbar-right add-button">+ Add New Project</button></a>
+    <a href="/contact/create"><button class="btn btn-primary navbar-btn navbar-right add-button">+ Add New Contact</button></a>
   </nav>
 
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Project Name</th>
-        <th>Partners</th>
-        <th>Contacts</th>
-        <th>Created <b class="caret"></b></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Title</th>
+        <th>Email</th>
+        <th>Phone</th>
       </tr>      
     </thead>
     <tbody>
-      {% for each_project in projects %}
+      {% for each_contact in contacts %}
         <tr>
           <td>
-            <a href="/project/" onclick="location.href=this.href+ '{{each_project._id}}';return false;">
-              {{each_project.project_name}}
+            <a href="/contact/" onclick="location.href=this.href+ '{{each_contact._id}}';return false;">
+              {{each_contact.contact_firstName}}
             </a>
           </td>
           <td><a href="#">4 Partners</a></td>
@@ -57,7 +60,7 @@
         </tr>
       {% endfor %}
   </table>
-  page: {% print page %}
+
   <div>
     <ul class="pagination pull-right">
       <li class="disabled"><a href="#">&laquo;</a></li>

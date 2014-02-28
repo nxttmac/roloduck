@@ -16,16 +16,59 @@
 <div style="width:700px">
   <form action="/contact/create" method="POST" role="form">
     <div class="form-group" >
-      <label for="contactname">Contact Name</label>
-      <input type="text" class="form-control" name="contactname" id="contactname" placeholder="Contact Name">
-      <span class="help-block">Choose a descriptive name for the contact.</span>
+      <label for="contactfirstname">First Name</label>
+      <input type="text" class="form-control" name="contactfirstname" id="contactfirstname" placeholder="Contact First Name">
     </div>
-    <div class="form-group">
-      <label for="contactdescription">Contact Description (optional)</label>
-      <textarea class="form-control" name="contactdescription" id="contactdescription" placeholder="Add a description to explain more about the contact" rows="3"></textarea>
+    <div class="form-group" >
+      <label for="contactlastname">Last Name</label>
+      <input type="text" class="form-control" name="contactlastname" id="contactlastname" placeholder="Contact Last Name">
     </div>
+    <div class="form-group" >
+      <label for="contactrole">Role</label>
+      <input type="text" class="form-control" name="contactrole" id="contactrole" placeholder="Contact Role">
+      <span class="help-block">Job type - i.e. Sales, Operations, etc.</span>
+    </div>
+    <div class="form-group" >
+      <label for="contacttitle">Title</label>
+      <input type="text" class="form-control" name="contacttitle" id="contacttitle" placeholder="Contact Title">
+      <span class="help-block">Job title - i.e. Account Manager, Director of Sales, etc.</span>
+    </div>
+    <div class="form-group" >
+      <label for="contactemail">Email</label>
+      <input type="text" class="form-control" name="contactemail" id="contactemail" placeholder="Contact Email">
+    </div>
+
+    <label for="contactemail">Phone</label><br />
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          <span style="padding:0px;">
+            <img src="/static/img/phone_logo.png" />
+          </span> Land line <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">
+            <span style="padding:0px;">
+              <img src="/static/img/phone_logo.png" />
+            </span> Land line</a>
+          </li>
+          <li><a href="#">
+            <span style="padding:0 4px;">
+              <img src="/static/img/cell_icon.png" />
+            </span> Cell Phone</a></li>
+          <li><a href="#">Fax</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Other</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+      <input type="text" class="form-control" name="contactphone" id="contact phone" placeholder="(XXX) XXX-XXX xXXX">
+    </div><!-- /input-group -->
+    <br />
     <!-- only enabled after the user enters a Contact Name -->
-    <button type="submit" class="btn btn-primary btn-lg signin-button">Submit</button>
+    <div class="form-group" >
+      <button type="submit" class="btn btn-primary btn-lg signin-button">Submit</button>
+    </div>
+
   </form>
 </div>
   {% include 'common/footer.html' %}

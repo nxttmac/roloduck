@@ -23,7 +23,7 @@ def contact_index():
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-        return render_template('contact/contacts.html', user=user, contacts=contacts)
+        return render_template('contact/contacts.html', user=user, contacts=contacts, page="contacts")
 
 # Serve the create contact template
 @app.route("/contact/create", methods=['GET'])
@@ -34,7 +34,7 @@ def serve_contact_create_page():
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-        return render_template('contact/create.html', user=user)
+        return render_template('contact/create.html', user=user, page="contacts")
 
 # Create the actual contact based on the submitted form
 @app.route("/contact/create", methods=['POST'])
@@ -54,7 +54,7 @@ def post_contact_create_page():
         if new_contact is not None:
             contact_dao.insert_contact(new_contact)
             flash(u'You have successfully added a new contact', 'success')
-            return render_template('contact/single-contact.html', contact=new_contact)
+            return render_template('contact/single-contact.html', contact=new_contact, page="contacts")
 
 # Serve a page for an individual contact
 @app.route("/contact/<contact_id>")
@@ -67,5 +67,5 @@ def serve_individual_contact_page(contact_id):
     else:    
         # Find this contact in the database
         contact = contact_dao.find_contact_by_id(contact_id)
-        return render_template('contact/single-contact.html', contact=contact, user=user)
+        return render_template('contact/single-contact.html', contact=contact, user=user, page="contacts")
         
