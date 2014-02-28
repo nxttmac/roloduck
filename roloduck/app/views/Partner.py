@@ -26,11 +26,7 @@ def partner_index():
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-<<<<<<< HEAD
         return render_template('partner/partners.html', user=user, partners=partners,page="partners")
-=======
-        return render_template('partner/partners.html', partners=partners, user=user, page="partners")
->>>>>>> 6102a73304cd2a67c18a91b464e40eb6d9bee332
 
 # Serve the create partner template
 @app.route("/partner/create", methods=['GET'])
