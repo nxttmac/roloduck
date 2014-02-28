@@ -17,7 +17,7 @@ function change(type, y) {
 }
 
 function addnumber() {
-  var extra = document.getElementById("extra").innerHTML;
+
   window.x++;
   var x = window.x;
   var insert =  "<div class='input-group'>";
@@ -48,5 +48,5 @@ function addnumber() {
       insert += " <input type='text' class='form-control' name='contactphone["+x+"].number' id='contactphone["+x+"].number' placeholder='(XXX) XXX-XXX xXXX'>";
       insert += "</div><!-- /input-group -->";
       insert += "<input type='text' class='form-control' name='contactphone["+x+"].type' id='contactphone["+x+"].type' placeholder='landline'>";
-  document.getElementById("extra").innerHTML = extra + insert;
+  document.getElementById("extra").innerHTML += insert;
 }
