@@ -3,15 +3,16 @@ __author__ = 'Peter Johnston'
 # Roloduck 2014
 
 from flask import render_template, url_for, redirect, flash, request
-from app import app, db
 from flask.ext.login import session, login_required
-from app.models.user import UserDao
-from app.models.project import ProjectDao, Project
-import time
+from app import app
+from app.db import db
+from app.db.UserDao import UserDao
+from app.db.ProjectDao import ProjectDao
+from app.models import Project
 
 # Create our Daos to connect to the collections
-user_dao = UserDao.UserDao(db)
-project_dao = ProjectDao.ProjectDao(db)
+user_dao = UserDao(db)
+project_dao = ProjectDao(db)
 
 # Serve the project list page
 @app.route("/projects", methods=['GET'])

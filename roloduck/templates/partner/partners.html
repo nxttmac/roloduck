@@ -24,7 +24,7 @@
       <ul class="dropdown-menu">
         {% for each_partner in partners %}
           <li>
-            <a href="/partner/" onclick="location.href=this.href+ '{{each_project._id}}';return false;">
+            <a href="/partner/" onclick="location.href=this.href+ '{{each_partner._id}}';return false;">
               {{each_partner.partner_name}}
             </a>
           </li>

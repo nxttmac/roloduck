@@ -3,22 +3,23 @@ __author__ = 'Peter Johnston'
 # Roloduck 2014
 
 from flask import render_template, url_for, redirect, flash, request
-from app import app, db
+from app import app
+from app.db import db
 from flask.ext.login import session, login_required
-from app.models.user import UserDao
-from app.models.contact import ContactDao, Contact
-import time
+from app.db.UserDao import UserDao
+from app.db.ContactDao import ContactDao
+from app.models import Contact
 
 # Create our Daos to connect to the collections
-user_dao = UserDao.UserDao(db)
-contact_dao = ContactDao.ContactDao(db)
+user_dao = UserDao(db)
+contact_dao = ContactDao(db)
 
 # Serve the contact list page
 @app.route("/contacts", methods=['GET'])
 @login_required
 def contact_index():
     user = user_dao.find_user_by_hash(session['username'])
-    contacts = contact_dao.find_contacts()
+    contacts = contact_dao.find_all()
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))

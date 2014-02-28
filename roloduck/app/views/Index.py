@@ -5,13 +5,15 @@ __author__ = 'Peter Johnston'
 # Import our database connection and application
 from flask import render_template, request, redirect, session, url_for, flash
 
-from app import app, db
-from app.models.user import UserDao, User
+from app import app
+from app.db import db
+from app.db.UserDao import UserDao
+from app.models import User
 from flask.ext.login import login_required, login_user
 
 
 # Create our UserDao to connect to the user collection
-user_dao = UserDao.UserDao(db)
+user_dao = UserDao(db)
 
 # This will handle routes to our splash screen
 @app.route("/index", methods=['GET'])
@@ -19,7 +21,7 @@ user_dao = UserDao.UserDao(db)
 @app.route("/", methods=['GET'])
 def roloduck_index():
     # No exception thrown for lists
-    userlist = user_dao.find_users()
+    userlist = user_dao.find_all()
     try:
         if session['username'] is not None:
             return redirect('/projects')
@@ -55,7 +57,7 @@ def post_signup_form():
     company = {'companyName': companyName, 'companySubscriptionType': companySubscriptionType}
     # TODO hardcoded role to admin
     role = User.ROLE_ADMIN
-    new_user = User.User(name, email, password, role, company)
+    new_user = User(name, email, password, role, company)
     if new_user is not None:
         user_dao.insert_user(new_user)
         session['username'] = email+password

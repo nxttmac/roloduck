@@ -4,16 +4,11 @@ __author__ = 'Peter Johnston'
 
 from flask import Flask
 from flask.ext.login import LoginManager
-from pymongo import MongoClient
 from app.secretkey import secret_key
 
 
 # Setup the app as a Flask application
 app = Flask('RoloDuck')
-
-# Connect to our MongoDB roloduck database
-client = MongoClient()
-db = client.roloduck
 
 # Login Manager
 login_manager = LoginManager()

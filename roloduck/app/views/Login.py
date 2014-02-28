@@ -4,12 +4,13 @@ __author__ = 'Peter Johnston'
 
 from flask import render_template, redirect, request, session, flash
 from flask.ext.login import logout_user, login_user, login_required
-from app import app, db, login_manager
-from app.models.user import UserDao
+from app import app, login_manager
+from app.db import db
+from app.db.UserDao import UserDao
 #import hashlib
 
 # Create our user_dao
-user_dao = UserDao.UserDao(db)
+user_dao = UserDao(db)
 
 @app.route("/login", methods=['GET'])
 def login_page_get():
