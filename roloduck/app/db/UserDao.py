@@ -23,32 +23,28 @@ class UserDao(RoloDuckDao):
         """
         Find the user with the given id
         """
-        user = self.collection.find_one({"_id": ObjectId(id)})
-        return self.convert_to_user(user)
+        return self.collection.find_one({"_id": ObjectId(id)})
 
-    def find_user_by_email(self, emailAddress):
+    def find_user_by_email(self, email_address):
         """
         Find the user with the given email
         """
-        user = self.collection.find_one({'useremail': emailAddress})
-        return self.convert_to_user(user)
+        return self.collection.find_one({'email': email_address})
 
     def find_user_by_hash(self, hash):
         """
         Find the user with the given hash
         """
         try:
-            user = self.collection.find_one({'hash': hash})
-            return self.convert_to_user(user)
+            return self.collection.find_one({'login_hash': hash})
         except KeyError:
             # TODO Do something with the error
             print 'Key Error bro!'
 
-    def convert_to_user(self, user):
+    def convert_to_user(self):
         """
         Convert the object to a real user
         """
         # TODO we need to work on the user constructor to deal with this method
-        if user is not None:
-            actual_user = User(user['name'], user['email'], user['password'], user['role'], user['company'])
-            return actual_user
+        return User(self['name'], self['email'], self['password'], self['role'],
+                    self['company'], self['login_hash'])

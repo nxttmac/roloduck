@@ -35,25 +35,20 @@ class PartnerDao(RoloDuckDao):
         """
         Find the partner created by the given user
         """
-        partner = self.collection.find_one({'created_by_user': created_by_user})
-        return self.convert_to_partner_dict(partner)
+        return self.collection.find_one({'created_by_user': created_by_user})
 
     def add_contact_to_partner(self, partner_id, partner):
         """
         Add the contact to the partners contacts list
         """
-        print partner_id
-        print partner.contacts
         self.collection.update({'_id': ObjectId(partner_id)},
                                {'$set': {'contacts': partner.contacts}})
 
     # A helper method to convert a partnerDao model to an actual partner model
-    def convert_to_partner(self, partner):
-        if partner is not None:
-            actual_partner = Partner(partner['partner_name'], 
-                                     partner['partner_description'],
-                                     partner['client_id'], 
-                                     partner['created_by_user'],
-                                     partner['date_created']
-                                     )
-            return actual_partner
+    def convert_to_partner(self):
+        actual_partner = Partner(self['partner_name'],
+                                 self['partner_description'],
+                                 self['client_id'],
+                                 self['created_by_user'],
+                                 self['date_created'])
+        return actual_partner

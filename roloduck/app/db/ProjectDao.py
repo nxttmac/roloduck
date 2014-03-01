@@ -29,12 +29,10 @@ class ProjectDao(RoloDuckDao):
         return self.collection.find_one({'created_by_user': created_by_user})
 
     # A helper method to convert a projectDao model to an actual Project model
-    def convert_to_project(self, project):
-        if project is not None:
-            actual_project = Project(project['project_name'], 
-                                             project['project_description'],
-                                             project['client_id'], 
-                                             project['created_by_user'],
-                                             project['date_created']
-                                             )
-            return actual_project
+    def convert_to_project(self):
+        actual_project = Project(self['project_name'],
+                                 self['project_description'],
+                                 self['client_id'],
+                                 self['created_by_user'],
+                                 self['date_created'])
+        return actual_project

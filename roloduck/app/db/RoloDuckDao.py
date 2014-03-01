@@ -17,7 +17,7 @@ class RoloDuckDao(object):
 
     def insert_obj(self, obj):
         """
-        insert the given object into the collection
+        Add the given object to the database
         Return the id
         """
         return self.collection.insert(obj)

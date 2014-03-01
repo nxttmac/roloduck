@@ -3,6 +3,8 @@ __author__ = 'Peter Johnston'
 # Roloduck 2014
 
 import hashlib
+from uuid import uuid1
+from bson.objectid import ObjectId
 
 # Defined user roles
 ROLE_USER = 0
@@ -13,35 +15,40 @@ COMPANY_TYPE_FREE = 0
 COMPANY_TYPE_PRO = 1
 COMPANY_TYPE_PREMIUM = 2
 
+
 class User():
     """
     Represents a User of the site including their login information
     """
 
-    def __init__(self, name, email, password, role, company):
-        temp = password
-        self.id =  self.hide_user_password(temp)
+    def __init__(self, name, email, password, role, company, login_hash=None):
+        self.id = ObjectId()
         self.name = name
         self.email = email
-        # TODO hash this
         self.password = password
         self.role = role
-        self.hash = email + password
         self.company = company
+        if login_hash is None:
+            self.login_hash = uuid1()
+        else:
+            self.login_hash = login_hash
 
-    def is_authenticated(self):
+    @staticmethod
+    def is_authenticated():
         """
         Is the current user authenticated
         """
         return True
 
-    def is_active(self):
+    @staticmethod
+    def is_active():
         """
         Is the current user active
         """
         return True
 
-    def is_anonymous(self):
+    @staticmethod
+    def is_anonymous():
         """
         Is the current user anonymous
         """
@@ -53,22 +60,20 @@ class User():
         """
         return unicode(self.id)
 
-    def hash_sequence(self, email, password):
+    def get_login_hash(self):
         """
-        Create the login hash using the users email and password
+        Return the current users login_hash
         """
-        # TODO is there any reason to use the email and pw instead of a uuid?
-        sha = hashlib.sha1(email + password)
-        return sha.hexdigest()
+        return self.login_hash
 
-    def hide_user_password(self, password):
+    @staticmethod
+    def hide_user_password(password):
         """
-        Hash the users password so it is stored encrpyted
+        Hash the users password so it is stored encrypted
         """
         md5 = hashlib.md5(password)
         return md5.hexdigest()
 
-    # A helper method to create the partner dict
     def get_user_map(self):
         """
         Return a JSON version of the current User. Used to store in a database
@@ -80,5 +85,4 @@ class User():
                 'password': self.password,
                 'role': self.role,
                 'company': self.company,
-                'hash': self.hash
-               }
+                'login_hash': self.login_hash}

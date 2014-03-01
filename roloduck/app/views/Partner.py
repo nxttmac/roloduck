@@ -21,19 +21,19 @@ partner_dao = PartnerDao(db)
 @app.route("/partners", methods=['GET'])
 @login_required
 def partner_index():
-    user = user_dao.find_user_by_hash(session['username'])
+    user = user_dao.find_user_by_hash(session['logged_in'])
     partners = partner_dao.find_all()
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
     else:
-        return render_template('partner/partners.html', user=user, partners=partners,page="partners")
+        return render_template('partner/partners.html', user=user, partners=partners, page="partners")
 
 # Serve the create partner template
 @app.route("/partner/create", methods=['GET'])
 @login_required
 def serve_partner_create_page():
-    user = user_dao.find_user_by_hash(session['username'])
+    user = user_dao.find_user_by_hash(session['logged_in'])
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
@@ -44,7 +44,7 @@ def serve_partner_create_page():
 @app.route("/partner/create", methods=['POST'])
 @login_required
 def post_partner_create_page():
-    user = user_dao.find_user_by_hash(session['username'])
+    user = user_dao.find_user_by_hash(session['logged_in'])
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return render_template('index.html', user=user)
@@ -59,14 +59,16 @@ def post_partner_create_page():
             partner_dao.insert_obj(new_partner)
             flash(u'You have successfully added a new partner', 'success')
             return redirect('/partners')
+
+
 @app.route("/add")
 def add_contact():
     partner = partner_dao.find_partner_by_id('53100c3b58f3375bf501e534')
     real_partner = Partner(partner['partner_name'], partner['partner_description'],
                            partner['client_id'], partner['created_by_user'], partner['contacts'])
     contact = Contact('contact_first_name', 'contact_last_name',
-                 'contact_role', 'contact_title', 'contact_email', 
-                 'contact_phone', 'client_id', 'created_by_user').get_contact_map()
+                      'contact_role', 'contact_title', 'contact_email',
+                      'contact_phone', 'client_id', 'created_by_user').get_contact_map()
     real_partner.add_contact_to_container(contact)
     partner_dao.add_contact_to_partner('53100c3b58f3375bf501e534', real_partner)
     return redirect('/partners')

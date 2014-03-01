@@ -18,7 +18,7 @@ project_dao = ProjectDao(db)
 @app.route("/projects", methods=['GET'])
 @login_required
 def project_index():
-    user = user_dao.find_user_by_hash(session['username'])
+    user = user_dao.find_user_by_hash(session['logged_in'])
     projects = project_dao.find_all()
     if user is None:
         flash(u'Please log in to see this page', 'warning')
@@ -30,7 +30,7 @@ def project_index():
 @app.route("/project/create", methods=['GET'])
 @login_required
 def serve_project_create_page():
-    user = user_dao.find_user_by_hash(session['username'])
+    user = user_dao.find_user_by_hash(session['logged_in'])
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return redirect(url_for('login_page.html'))
@@ -41,7 +41,7 @@ def serve_project_create_page():
 @app.route("/project/create", methods=['POST'])
 @login_required
 def post_project_create_page():
-    user = user_dao.find_user_by_hash(session['username'])
+    user = user_dao.find_user_by_hash(session['logged_in'])
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return render_template('index.html', user=user)
@@ -61,7 +61,7 @@ def post_project_create_page():
 @app.route("/project/<project_id>")
 @login_required
 def serve_individual_project_page(project_id):
-    user = user_dao.find_user_by_hash(session['username'])
+    user = user_dao.find_user_by_hash(session['logged_in'])
     if user is None:
         flash(u'Please log in to see this page', 'warning')
         return render_template('index.html', user=user)

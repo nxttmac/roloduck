@@ -5,7 +5,7 @@
         <a class="navbar-brand" alt="Home" href="/"></a>
       </div>
       {% block content %}
-      {% if session.username %}
+      {% if session.logged_in %}
         <ul class="nav navbar-nav navbar-right">
           <li {% if page == "projects" %} class="active" {% endif %}><a href="/projects">Projects</a></li>
           <li{% if page == "partners" %} class="active" {% endif %}><a href="/partners">Partners</a></li>
@@ -21,7 +21,7 @@
           </li>
         </ul>>
       {% endif %}
-      {% if not session.username %}
+      {% if not session.logged_in %}
         <form class="form-inline navbar-right navbar-form" action="/login" method="POST" role="form">
           <div class="form-group" >
             <label class="sr-only" for="exampleInputEmail2">Email address</label>
